@@ -77,5 +77,6 @@ namespace BinarySearchTree
             else
                 return Size(root.Left) + 1 + Size(root.Right);
         }
+
     }
 }

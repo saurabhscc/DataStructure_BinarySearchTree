@@ -22,7 +22,8 @@ namespace BinarySearchTree
             mybinarynode.InsertNode(67);
             mybinarynode.Display(mybinarynode.root);
             mybinarynode.Root();
-            
+            Console.WriteLine("The number of nodes in BST:{0}", mybinarynode.Size(mybinarynode.root));
+
         }
         static void Main(string[] args)
         {
