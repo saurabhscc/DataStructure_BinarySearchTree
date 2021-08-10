@@ -70,6 +70,12 @@ namespace BinarySearchTree
                 break;
             } while (root != null);
         }
-        
+        public int Size(INode<T> root)
+        {
+            if (root == null)
+                return 0;
+            else
+                return Size(root.Left) + 1 + Size(root.Right);
+        }
     }
 }
