@@ -4,65 +4,72 @@ using System.Text;
 
 namespace BinarySearchTree
 {
-    class MyBinaryNode<T> where T : IComparable
+    public class MyBinaryNode<T> where T : IComparable
     {
-        public INode<T> value;
-        public INode<T> start;
-        public MyBinaryNode()
+        public INode<T> root;
+        /// <summary>
+        /// Insert the node into bst.
+        /// </summary>
+        /// <param name="value"></param>
+        public void InsertNode(T value)
         {
-            value = null;
-            start = null;
-        }
-        public void Add(T data)
-        {
-            if (value == null)
+            INode<T> newNode = new INode<T>(value);
+            if (root == null)
             {
-                value = new INode<T>(data);
+                root = newNode;
             }
             else
             {
-                var node = new INode<T>(data);
-                var temp = start;
-                if (data.CompareTo(value.data) < 0)
+                INode<T> parent = root;
+                INode<T> current = root;
+                while (true)
                 {
-                    if (temp.Left == null)
-                        temp.Left = node;
-                    else
+                    parent = current;
+                    if (current.data.CompareTo(value) >= 0)
                     {
-                        start = temp.Left;
-                        Add(data);
+                        current = current.Left;
+                        if (current == null)
+                        {
+                            parent.Left = newNode;
+                            break;
+                        }
                     }
-                }
-                else
-                {
-                    if (temp.Right == null)
-                        temp.Right = node;
                     else
                     {
-                        start = temp.Right;
-                        Add(data);
+                        current = current.Right;
+                        if (current == null)
+                        {
+                            parent.Right = newNode;
+                            break;
+                        }
                     }
                 }
             }
-            start = value;
         }
+        /// <summary>
+        /// Display the BST
+        /// </summary>
+        /// <param name="parent"></param>
         public void Display(INode<T> parent)
         {
-            Console.WriteLine("Parent : {0}", parent.data);
-            if (parent.Left != null)
-            {
-                Console.WriteLine("Left :" + parent.Left.data);
-            }
-            if (parent.Right != null)
-                Console.WriteLine("Right :" + parent.Right.data);
-            if (parent.Left != null)
+            if (parent != null)
             {
                 Display(parent.Left);
-            }
-            if (parent.Right != null)
-            {
                 Display(parent.Right);
+                Console.WriteLine("{0} is BST Node", parent.data);
             }
         }
+        /// <summary>
+        /// Display the root node of BST.
+        /// </summary>
+        public void Root()
+        {
+            do
+            {
+                Console.WriteLine("BST Root Node:" + root.data);
+                break;
+            } while (root != null);
+        }
+        
     }
 }

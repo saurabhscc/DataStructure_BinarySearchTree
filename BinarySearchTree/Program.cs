@@ -4,20 +4,20 @@ namespace BinarySearchTree
 {
     class Program
     {
-        
-        public static void BinarySearchTree()
+        static readonly MyBinaryNode<int> mybinarynode = new MyBinaryNode<int>();
+        public static void BSTView()
         {
-            Console.WriteLine("Welcome to the Binary Search Tree program");
-
-            var bst = new MyBinaryNode<int>();
-            bst.Add(56);
-            bst.Add(30);
-            bst.Add(70);
-            bst.Display(bst.value);
+            mybinarynode.InsertNode(56);
+            mybinarynode.InsertNode(30);
+            mybinarynode.InsertNode(70);
+            mybinarynode.Display(mybinarynode.root);
+            mybinarynode.Root();
+            
         }
         static void Main(string[] args)
         {
-            BinarySearchTree();
+            BSTView();
         }
     }
 }
+
